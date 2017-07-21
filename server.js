@@ -16,10 +16,10 @@ MongoClient.connect(uri, function(err, db) {
       res.sendFile(__dirname + '/views/index.html');
     })
     app.get("/new/*", (req, res) => {
-      let reqDoc = {"original": request.params[0], "userId": Math.floor(1000 + Math.random() * 9000 )}
+      let reqDoc = {"original": req.params[0], "userId": Math.floor(1000 + Math.random() * 9000 )}
       let userId = reqDoc.userId.toString();;
       short.insertOne(reqDoc);
-      response.send("Your new url is: " + request.get('host') + '/' + userId)
+      res.send("Your new url is: " + req.get('host') + '/' + userId)
     });
     app.get("/:id", (req, res) => {
       let newId = Number(req.params.id)
