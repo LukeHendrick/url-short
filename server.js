@@ -24,11 +24,7 @@ MongoClient.connect(uri, function(err, db) {
     app.get("/short/:id", (req, res) => {
       var newId = Number(req.params.id)
       short.find({"userId": newId}).toArray(function (err, docs) {
-        if (docs === undefined) {
-          res.send('Entry not found!')
-          return;
-        }
-        var redirect = docs[0].original
+        let reDirect = docs[0].original
         res.redirect(redirect)
       })
     })
